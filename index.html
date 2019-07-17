@@ -1,46 +1,48 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142774790-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-142774790-1');
-</script>
-  <meta charset="UTF-8">
-  <title>Furkan Toprak</title>
-  <link href='https://fonts.googleapis.com/css?family=Raleway:200,400,800' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
-  <link rel='stylesheet' href='https://www.marcoguglie.it/Codepen/AnimatedHeaderBg/demo-1/css/demo.css'>
-
-      <link rel="stylesheet" href="css/style.css">
-
-  
+  <meta charset="utf-8">
+  <title>particles.js</title>
+  <meta name="description" content="particles.js is a lightweight JavaScript library for creating particles.">
+  <meta name="author" content="Vincent Garreau" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" media="screen" href="css/style.css">
 </head>
-
 <body>
 
-  <div id="large-header" class="large-header">
-  <canvas id="demo-canvas"></canvas>
-    <h1 class="main-title"><a href="index.html">FURKAN TOPRAK</a></h1>
-    <p class="headers"><a href="me.html">&ltMe&gt</a>&nbsp;
-      <a href="experience.html">&ltExperience&gt</a>&nbsp;
-      <a href="contact.html">&ltContact&gt</a>
-      <a href="cbpw.html">&ltCBP&W&gt</a>
-    </p>
-    <p class="text-content">Welcome to my website! Click on a link to get started.</p>
-    <a href="https://github.com/FurkanToprak"><img class="top-left" src="github-icon.png"></a>
-    <a href="https://www.linkedin.com/in/furkantoprak/"><img class="top-right" src="linkedin-icon.png"></a>
+<!-- count particles -->
+<div class="count-particles">
+  <span class="js-count-particles">--</span> particles
 </div>
-<script src='https://www.marcoguglie.it/Codepen/AnimatedHeaderBg/demo-1/js/EasePack.min.js'></script>
-<script src='https://www.marcoguglie.it/Codepen/AnimatedHeaderBg/demo-1/js/rAF.js'></script>
-<script src='https://www.marcoguglie.it/Codepen/AnimatedHeaderBg/demo-1/js/TweenLite.min.js'></script>
-    <script  src="js/index.js"></script>
-</body>
 
+<!-- particles.js container -->
+<div id="particles-js"></div>
+
+<!-- scripts -->
+<script src="../particles.js"></script>
+<script src="js/app.js"></script>
+
+<!-- stats.js -->
+<script src="js/lib/stats.js"></script>
+<script>
+  var count_particles, stats, update;
+  stats = new Stats;
+  stats.setMode(0);
+  stats.domElement.style.position = 'absolute';
+  stats.domElement.style.left = '0px';
+  stats.domElement.style.top = '0px';
+  document.body.appendChild(stats.domElement);
+  count_particles = document.querySelector('.js-count-particles');
+  update = function() {
+    stats.begin();
+    stats.end();
+    if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
+      count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
+    }
+    requestAnimationFrame(update);
+  };
+  requestAnimationFrame(update);
+</script>
+
+</body>
 </html>
